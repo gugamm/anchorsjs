@@ -10,7 +10,7 @@ $(function () {
         var w;
         for (var i = 0; i < hanchors.length; i++) {
             hanchor = hanchors[i];
-            w = hanchor.parent.outerWidth(false) - hanchor.totalWidth - (hanchor.elem.outerWidth(true) - hanchor.elem.width()) ;
+            w = hanchor.parent.width() - hanchor.totalWidth - (hanchor.elem.outerWidth(true) - hanchor.elem.width()) ;
             hanchor.elem.css("width", w.toString() + "px");
         }
     }
@@ -20,7 +20,7 @@ $(function () {
         var h;
         for (var i = 0; i < vanchors.length; i++) {
             vanchor = vanchors[i];
-            h = vanchor.parent.outerHeight(false) - vanchor.totalHeight - (vanchor.elem.outerHeight(true) - vanchor.elem.height());
+            h = vanchor.parent.height() - vanchor.totalHeight - (vanchor.elem.outerHeight(true) - vanchor.elem.height());
             vanchor.elem.css("height", h.toString() + "px");
         }
     }
@@ -48,6 +48,8 @@ $(function () {
         var parent = $(this).parent();
         var totalHeight = 0;
         parent.children().each(function () {
+			if ($(this).hasClass('vanchor'))
+				return;
             totalHeight += $(this).outerHeight(true);
         });
         vanchors.push({
